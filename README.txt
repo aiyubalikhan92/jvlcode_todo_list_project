@@ -64,8 +64,14 @@ file:
 folder:
 frontend:
 
+vi frontend/.env.prod
+
 VITE_API_URL=http://34.229.222.21:5000/api
 
 ##
-vi frontend/.env.prod
 
+4: 
+
+change ip githut repo in secret env variable:
+
+https://github.com/aiyubalikhan92/jvlcode_todo_list_project/settings/secrets/actions/EC2_HOST
