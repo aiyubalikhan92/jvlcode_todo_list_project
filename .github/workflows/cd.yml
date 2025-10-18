@@ -1,7 +1,7 @@
 name: MERN CD
 
 on:
-  push:
+  push: 
     branches: [main]
 
 jobs:
@@ -9,23 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v5
 
+    steps:
       - name: Deploy via SSH
-        run: |
-          ssh -i ${{ secrets.EC2_SSH_KEY }} -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            cd jvlcode_todo_list_project/
-
-            # Delete all files except .git
-            find . -mindepth 1 ! -name ".git" -delete
-
-            # Pull latest code
-            git reset --hard
-            git clean -fd
-            git pull origin main
-
-            # Rebuild Docker containers
-            docker compose down
-            docker compose up --build -d
-EOF
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: | 
+           cd jvlcode_todo_list_project/ 
+           git pull origin main
+           docker compose down
+           docker compose up --build -d
