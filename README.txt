@@ -25,5 +25,8 @@ MONGO_URI=mongodb://mongo:27017/todo
 JWT_SECRET=your_secret_code
 
 ##
+git status && git add . && git status && git commit -m "&& commit" && git push
+
+## ##
 
 
