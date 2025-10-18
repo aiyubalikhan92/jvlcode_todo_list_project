@@ -1,7 +1,7 @@
 name: MERN CD
 
 on:
-  push: 
+  push:
     branches: [main]
 
 jobs:
@@ -10,12 +10,24 @@ jobs:
 
     steps:
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@v0.6.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: | 
-           cd jvlcode_todo_list_project/ 
-           docker compose down
-           docker compose up --build -d
+          port: 22
+          script: |
+            cd jvlcode_todo_list_project/
+            
+            # Ensure no local changes break git pull
+            git reset --hard
+            git clean -fd
+            
+            # Pull latest code
+            git pull origin main
+            
+            # Stop and remove existing containers
+            docker-compose down
+            
+            # Build and start containers in detached mode
+            docker-compose up --build -d
