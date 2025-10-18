@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v0.6.0
+        uses: appleboy/ssh-action@v1.0.1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
@@ -18,16 +18,8 @@ jobs:
           port: 22
           script: |
             cd jvlcode_todo_list_project/
-            
-            # Ensure no local changes break git pull
             git reset --hard
             git clean -fd
-            
-            # Pull latest code
             git pull origin main
-            
-            # Stop and remove existing containers
             docker-compose down
-            
-            # Build and start containers in detached mode
             docker-compose up --build -d
