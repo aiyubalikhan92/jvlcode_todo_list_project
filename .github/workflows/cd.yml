@@ -10,17 +10,23 @@ jobs:
 
     steps:
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@v0.4.0
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: | 
-           cd jvlcode_todo_list_project/ 
-            rm -rf *
+          port: 22
+          script: |
+            cd jvlcode_todo_list_project/
+            
+            # Remove all files except .git
+            find . -mindepth 1 ! -name ".git" -delete
+            
             # Pull fresh code from Git
             git reset --hard
             git clean -fd
-           git pull origin main
-           docker compose down
-           docker compose up --build -d
+            git pull origin main
+            
+            # Rebuild containers
+            docker compose down
+            docker compose up --build -d
