@@ -1,37 +1,25 @@
-version: '3.9'  # Specify compose file version
-
 services:
   mongo:
-    image: mongo:latest
+    image: "mongo"
     ports:
       - "8080:27017"
     volumes:
       - ./mongo_data:/data/db
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
-      interval: 5s
-      retries: 5
-      timeout: 5s
-
+  
   backend:
-    build: ./backend
+    build: './backend'
     ports:
       - "5000:5000"
     depends_on:
-      mongo:
-        condition: service_healthy  # Wait until Mongo is healthy
+      - mongo
     env_file:
-      - ./backend/.env.prod
-    restart: unless-stopped
-
+      - "./backend/.env.prod"
+  
   frontend:
-    build: ./frontend
+    build: './frontend'
     ports:
       - "3000:3000"
     depends_on:
-      backend:
-        condition: service_started
+      - backend
     env_file:
-      - ./frontend/.env.prod
-    restart: unless-stopped
+      - "./frontend/.env.prod"

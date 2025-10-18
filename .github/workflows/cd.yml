@@ -33,4 +33,4 @@ jobs:
            docker rm $(docker ps -aq) 2>/dev/null || true
            docker rmi $(docker images -q) -f 2>/dev/null || true
            docker compose down
-           docker compose up --build -d
+           docker compose up --dev -d
