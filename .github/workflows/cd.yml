@@ -18,7 +18,14 @@ jobs:
           script: | 
             whoami
             sudo cd jvlcode_todo_list_project/
-            docker-compose down
-            docker-compose up --build -d
+            sudo docker compose down
+            sudo docker compose up --build -d
             whoami
             pwd
+            sudo docker images
+            echo "sudo docker images"
+            echo "--------------------------"
+            sudo docker ps 
+            echo " sudo docker ps"
+            echo "--------------------------"
+            sudo docker ps -a
