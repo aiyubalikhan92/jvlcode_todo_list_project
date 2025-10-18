@@ -22,6 +22,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: | 
            cd jvlcode_todo_list_project/ 
-           git pull origin main
-           docker compose down
-           docker compose up --build -d
+           ls
+           pwd
+           ls -la
+           whoami
