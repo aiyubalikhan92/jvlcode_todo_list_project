@@ -12,13 +12,18 @@ jobs:
        
 
       - name: remove repo
+        uses: appleboy/ssh-action@v1
         with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             # Remove existing repo if exists
             if [ -d "/home/ec2-user/jvlcode_todo_list_project" ]; then
               echo "Removing old repository..."
               rm -rf /home/ec2-user/jvlcode_todo_list_project
             fi
+            
       - name: Checkout Repository      
         uses: actions/checkout@v5
 
