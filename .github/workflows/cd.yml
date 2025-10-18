@@ -23,8 +23,11 @@ jobs:
             fi
 
             # Clone fresh repo
-            git clone https://github.com/aiyubalikhan92/jvlcode_todo_list_project.git /home/ec2-user/jvlcode_todo_list_project
-
+            #git clone https://github.com/aiyubalikhan92/jvlcode_todo_list_project.git /home/ec2-user/jvlcode_todo_list_project
+      
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+        
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
