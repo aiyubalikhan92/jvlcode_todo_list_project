@@ -9,6 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+       
+
+      - name: remove repo
+        with:
+          script: |
+            # Remove existing repo if exists
+            if [ -d "/home/ec2-user/jvlcode_todo_list_project" ]; then
+              echo "Removing old repository..."
+              rm -rf /home/ec2-user/jvlcode_todo_list_project
+            fi
+      - name: Checkout Repository      
+        uses: actions/checkout@v5
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:

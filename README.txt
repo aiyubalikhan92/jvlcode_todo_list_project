@@ -34,6 +34,7 @@ place need to change ip:
 1: in repo 
 
 .env.prod frontend:
+vi frontend/.env.prod
 
 VITE_API_URL=http://34.229.222.21:5000/api
 
