@@ -8,11 +8,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+      
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v5
 
-    steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
