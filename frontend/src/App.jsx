@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1 style={{color:"red"}}>To-Do List with DevOps</h1>
+      <h1 style={{ color: "green" }}>To-Do List with DevOps</h1>
       <input
         value={text}
         onChange={e => setText(e.target.value)}
