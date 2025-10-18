@@ -23,20 +23,7 @@ jobs:
             fi
 
             # Clone fresh repo
-            #git clone https://github.com/aiyubalikhan92/jvlcode_todo_list_project.git /home/ec2-user/jvlcode_todo_list_project
-      
-      - name: adding repo
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-              git pull origin main
-  
-
-      - name: Checkout Repository
-        uses: actions/checkout@v5
+            git clone https://github.com/aiyubalikhan92/jvlcode_todo_list_project.git /home/ec2-user/jvlcode_todo_list_project
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
