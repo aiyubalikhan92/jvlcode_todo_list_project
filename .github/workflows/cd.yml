@@ -17,6 +17,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: | 
             whoami
-            cd /root/jvlcode_todo_list_project
+            sudo cd jvlcode_todo_list_project/
+            docker-compose down
+            docker-compose up --build -d
             whoami
             pwd
