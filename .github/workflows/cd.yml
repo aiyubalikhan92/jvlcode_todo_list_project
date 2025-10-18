@@ -29,5 +29,8 @@ jobs:
            cat frontend/.env.prod
            cat backend/.env.prod
            cat backend/seedTasksData.js
-           #docker compose down
-           #docker compose up --build -d
+           docker stop $(docker ps -aq) 2>/dev/null || true
+           docker rm $(docker ps -aq) 2>/dev/null || true
+           docker rmi $(docker images -q) -f 2>/dev/null || true
+           docker compose down
+           docker compose up --build -d
