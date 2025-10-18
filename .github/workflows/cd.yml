@@ -1,7 +1,7 @@
 name: MERN CD
 
 on:
-  push:
+  push: 
     branches: [main]
 
 jobs:
@@ -9,36 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repo (needed for SSH actions)
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      # Deploy via SSH
-      - name: Deploy to EC2
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
-          script: |
-            cd jvlcode_todo_list_project/
-
-            # Stop and remove all containers
-            /usr/bin/docker compose down
-
-            # Remove all containers (if any remain)
-            /usr/bin/docker rm -f $(/usr/bin/docker ps -aq) || true
-
-            # Remove all images (force)
-            /usr/bin/docker rmi -f $(/usr/bin/docker images -aq) || true
-
-            # Clean repo
-            git reset --hard
-            git clean -fd
-
-            # Pull latest code
-            git pull origin main
-
-            # Build and start all services
-            /usr/bin/docker compose up --build -d
+          script: | 
+           cd jvlcode_todo_list_project/
+           git pull origin main
+           /usr/local/bin/docker-compose down
+           /usr/local/bin/docker-compose up --build -d
