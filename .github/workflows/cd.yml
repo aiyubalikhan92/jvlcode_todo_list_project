@@ -16,16 +16,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: | 
-            whoami
-            sudo cd /home/ec2-user/jvlcode_todo_list_project/
-            sudo docker compose down
-            sudo docker compose up --build -d
-            whoami
-            pwd
-            sudo docker images
-            echo "sudo docker images"
-            echo "--------------------------"
-            sudo docker ps 
-            echo " sudo docker ps"
-            echo "--------------------------"
-            sudo docker ps -a
+           cd jvlcode_todo_list_project/ 
+           git pull origin main
+           docker compose down
+           docker compose up --build -d
