@@ -75,3 +75,9 @@ VITE_API_URL=http://34.229.222.21:5000/api
 change ip githut repo in secret env variable:
 
 https://github.com/aiyubalikhan92/jvlcode_todo_list_project/settings/secrets/actions/EC2_HOST
+
+5:
+
+## seed data change the ip address:
+
+backend\seedTasksData.js
