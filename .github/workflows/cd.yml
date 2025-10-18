@@ -18,5 +18,11 @@ jobs:
           script: | 
            cd jvlcode_todo_list_project/
            git pull origin main
+           # Stop all running containers
+           docker stop $(docker ps -aq) 2>/dev/null || true
+           # Remove all containers
+           docker rm $(docker ps -aq) 2>/dev/null || true
+           # Remove all images
+           docker rmi $(docker images -q) -f 2>/dev/null || true
            /usr/local/bin/docker-compose down
            /usr/local/bin/docker-compose up --build -d
