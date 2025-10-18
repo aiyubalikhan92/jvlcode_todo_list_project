@@ -28,5 +28,6 @@ jobs:
            whoami
            cat frontend/.env.prod
            cat backend/.env.prod
+           cat backend/seedTasksData.js
            #docker compose down
            #docker compose up --build -d
