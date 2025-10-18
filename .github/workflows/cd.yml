@@ -26,5 +26,7 @@ jobs:
            pwd
            ls -la
            whoami
-           docker compose down
-           docker compose up --build -d
+           cat frontend/.env.prod
+           cat backend/.env.prod
+           #docker compose down
+           #docker compose up --build -d
