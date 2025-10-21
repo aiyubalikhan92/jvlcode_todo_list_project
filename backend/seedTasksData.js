@@ -1,7 +1,7 @@
 // server/seedTasksData.js
 const mongoose = require('mongoose');
 
-const MONGO_URL = process.env.MONGO_URI || 'mongodb://23.20.87.240:27017/todo';
+const MONGO_URL = process.env.MONGO_URI || 'mongodb://54.221.2.253:27017/todo';
 
 // Define minimal schema
 const taskSchema = new mongoose.Schema({
