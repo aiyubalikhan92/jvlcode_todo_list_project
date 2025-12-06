@@ -1,3 +1,6 @@
+
+## testing
+
 mongodb://13.222.182.123:27017/
 
 13.222.182.123:27017
@@ -25,7 +28,7 @@ MONGO_URI=mongodb://mongo:27017/todo
 JWT_SECRET=your_secret_code
 
 ##
-git status && git add . && git status && git commit -m "&& commit" && git push
+git pull &&  git pull && git status && git add . && git status && git commit -m "&& commit" && git push
 
 ## ##
 
